@@ -1,13 +1,13 @@
-import { FlatCompat } from "@eslint/eslintrc"
+import { FlatCompat } from "@eslint/eslintrc";
 
 const compat = new FlatCompat({
-  // funciona a partir do Node 20.11.0
   baseDirectory: import.meta.dirname,
-})
+});
 
 const eslintConfig = [
   ...compat.config({
     extends: ["next", "next/core-web-vitals", "next/typescript"],
+    ignores: ["node_modules", ".next"], // <--- aqui
     rules: {
       "react/no-unescaped-entities": "off",
       "@next/next/no-page-custom-font": "off",
@@ -17,8 +17,10 @@ const eslintConfig = [
         "warn",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      "@typescript-eslint/no-this-alias": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
     },
   }),
-]
+];
 
-export default eslintConfig
+export default eslintConfig;
