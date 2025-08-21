@@ -1,13 +1,12 @@
-import { FlatCompat } from "@eslint/eslintrc";
+import { FlatCompat } from "@eslint/eslintrc"
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
-});
+})
 
 const eslintConfig = [
   ...compat.config({
     extends: ["next", "next/core-web-vitals", "next/typescript"],
-    ignores: ["node_modules", ".next"], // <--- aqui
     rules: {
       "react/no-unescaped-entities": "off",
       "@next/next/no-page-custom-font": "off",
@@ -21,6 +20,9 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-expressions": "off",
     },
   }),
-];
+  {
+    ignores: ["node_modules", ".next"], 
+  },
+]
 
-export default eslintConfig;
+export default eslintConfig
